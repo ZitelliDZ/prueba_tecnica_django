@@ -1,0 +1,49 @@
+version: '3.8'
+services:
+  backend:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    command: 'python manage.py runserver 0.0.0.0:8000'
+    ports:
+      - 8000:8000
+    volumes:
+      - .:/app
+    depends_on:
+      - db
+      - dbtest
+      - cache
+
+  cache:
+    image: memcached
+    ports:
+      - 11211:11211
+    command: -m 64
+
+  db:
+    image: mysql
+    restart: always
+    environment:
+      MYSQL_DATABASE: core
+      MYSQL_USER: core
+      MYSQL_PASSWORD: core
+      MYSQL_ROOT_PASSWORD: core
+      MYSQL_SSL_MODE: DISABLED
+    volumes:
+      - .dbdata:/var/lib/mysql
+    ports:
+      - 33066:3306
+
+  dbtest:
+    image: mysql
+    restart: always
+    environment:
+      MYSQL_DATABASE: testcore
+      MYSQL_USER: testcore
+      MYSQL_PASSWORD: testcore
+      MYSQL_ROOT_PASSWORD: testcore
+      MYSQL_SSL_MODE: DISABLED
+    volumes:
+      - .dbtest:/var/lib/mysql
+    ports:
+      - 33000:3000

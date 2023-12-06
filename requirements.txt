@@ -1,0 +1,10 @@
+Django
+djangorestframework
+mysqlclient
+django-cors-headers
+django-mysql
+pymysql
+python-dotenv
+pytest
+pytest-django
+pymemcache

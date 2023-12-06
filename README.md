@@ -1,7 +1,7 @@
 # Prueba Técnica Django 
 
 * El proyecto incluye una carpeta Postman con un archivo para importar.
-* Consta de una aplicación principal llamada Core y una aplicación llamada Redirect.
+* Consta de una aplicación principal llamada Core y otra llamada Redirect.
 * El archivo docker-compose define 4 contenedores: DB - DBTest - Cache - Backend (Aplicación).
 
 ## Getting Started
